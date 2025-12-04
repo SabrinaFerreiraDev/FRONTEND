@@ -1,0 +1,284 @@
+@font-face {
+  font-family: "Karla-Italic";
+  src: url(../assets/fonts/Karla-Italic-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: "Karla";
+  src: url(../assets/fonts/Karla-VariableFont_wght.ttf);
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input,
+textarea,
+button {
+  outline: none;
+  cursor: pointer;
+  font-family: "Karla";
+}
+
+
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.Container {
+  background: #fff;
+  padding: 20px;
+  width: 80%;
+  border-radius: 20px;
+  margin-top: 200px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.75);
+
+  h1 {
+    font-family: "Karla";
+    margin-bottom: 20px;
+  }
+
+  /* Inputs gerais */
+  #fistname,
+  #lastname,
+  #email,
+  #message {
+    width: 100%;
+    border: 1px solid hsl(186, 15%, 59%);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  #fistname,
+  #lastname,
+  #email {
+    height: 50px;
+  }
+
+  #message {
+    height: 120px;
+    resize: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+
+
+
+p {
+  font-family: "Karla-Italic";
+  margin-bottom: 10px;
+
+  &::after {
+    content: "*";
+    color: hsl(169, 82%, 27%);
+    margin-left: 5px;
+  }
+}
+
+
+
+.radios {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  .ButtonRadios {
+    padding: 15px 18px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: 0.2s;
+
+    &:has(input[type="radio"]:checked) {
+      background: #05d4a081;
+      border-color: #00a67d;
+    }
+  }
+
+  input {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+
+    &:checked {
+      accent-color: hsl(169, 82%, 27%);
+      content: url("../assets/images/icon-radio-selected.svg");
+    }
+  }
+}
+
+
+
+.terms {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  .terms-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    
+  }
+
+  input {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+
+    &:checked {
+      content: url("../assets/images/icon-checkbox-check.svg");
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+
+
+#submit {
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: hsl(169, 82%, 27%);
+  color: #fff;
+  font-family: "Karla";
+  font-size: 20px;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: hsl(169, 81%, 11%);
+  }
+}
+
+
+input:hover,
+textarea:hover {
+  outline: auto 1px hsla(169, 84%, 41%, 0.726);
+}
+
+textarea:focus,
+input:focus {
+  outline: auto 1px hsl(169, 82%, 27%);
+}
+
+
+span {
+  font-family: "Karla-Italic";
+  color: hsl(0, 66%, 54%);
+}
+
+.error-firstname,
+.error-lastname,
+.error-email,
+.error {
+  position: relative;
+  left: 5px;
+  bottom: 15px;
+}
+.error-terms {
+  position: relative;
+  left: 5px;
+  top: -2px;
+}
+.error-radio {
+  bottom: 5px;
+  margin: 0;
+}
+
+.success {
+  display: none;
+  position: absolute;
+  left: 10%;
+  top: -10%;
+  width: 75%;
+  padding: 5px;
+  margin-left: 15px;
+  margin-top: 90px;
+  border-radius: 20px;
+  background-color: hsl(187, 24%, 22%);
+  color: #fff;
+  text-align: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.75);
+
+  h1 {
+    font-family: "Karla";
+
+    &::before {
+      content: url("../assets/images/icon-success-check.svg");
+      margin-left: 5px;
+    }
+  }
+
+  p {
+    &::after {
+      content: none;
+    }
+  }
+}
+
+/* ----------------------------------------------------- */
+/* RESPONSIVO                                             */
+/* ----------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  #submit {
+    margin-top: 10px;
+  }
+
+  .success {
+    top: -10%;
+    left: 35%;
+    width: 400px;
+  }
+
+  .Container {
+    width: 600px;
+    margin: auto;
+  }
+
+  .CamposName {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+
+    .fistname,
+    .lastname {
+      width: 50%;
+
+      .error-firstname,
+      .error-lastname {
+        bottom: 15px;
+        
+      }
+    }
+  }
+
+  .radios .error-radio {
+    left: 12px;
+  }
+  .radios-buttons {
+    display: flex;
+    gap: 10px;
+
+    .ButtonRadios {
+      width: 50%;
+    }
+  }
+}
