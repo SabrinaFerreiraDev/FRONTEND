@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Mentor | Calculator app</title>
+    <link rel="shortcut icon" href="./images/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/reset.css">
+</head>
+<body class="theme-1">
+<main class="calculator">
+
+  <header class="calculator-header">
+    <h1 class="logo">calc</h1>
+
+    <div class="theme-control">
+
+      <div class="theme-numbers">
+        <button class="theme-btn" data-theme="1">1</button>
+        <button class="theme-btn" data-theme="2">2</button>
+        <button class="theme-btn" data-theme="3">3</button>
+      </div>
+
+      <div class="theme-toggle-container">
+        <p class="theme-label">THEME</p>
+
+        <div class="theme-toggle">
+          <div class="toggle-ball ative-1"  data-theme="1"></div>
+          <div class="toggle-ball ative-2" data-theme="2"></div>
+          <div class="toggle-ball ative-3" data-theme="3"></div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <div class="calculator-screen" data-value="screen"></div>
+
+  <div class="calculator-keypad">
+
+    <button class="key key-number" data-value="7">7</button>
+    <button class="key key-number" data-value="8">8</button>
+    <button class="key key-number" data-value="9">9</button>
+    <button class="key key-action key-delete" data-value="DEL">DEL</button>
+
+    <button class="key key-number" data-value="4">4</button>
+    <button class="key key-number" data-value="5">5</button>
+    <button class="key key-number" data-value="6">6</button>
+    <button class="key key-operator" data-value="+">+</button>
+
+    <button class="key key-number" data-value="1">1</button>
+    <button class="key key-number" data-value="2">2</button>
+    <button class="key key-number" data-value="3">3</button>
+    <button class="key key-operator" data-value="-">-</button>
+
+    <button class="key key-number" data-value=".">.</button>
+    <button class="key key-number" data-value="0">0</button>
+    <button class="key key-operator" data-value="/">÷</button>
+    <button class="key key-operator" data-value="*">x</button>
+
+    <button class="key key-action key-reset" data-value="RESET">RESET</button>
+    <button class="key key-equals" data-value="=">=</button>
+
+  </div>
+
+  <footer>
+      <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">Sabrina Ferreira</a>.
+    </div>
+  </footer>
+</main>
+<script src="src/js/script.js"></script>
+
+</body>
+</html>
