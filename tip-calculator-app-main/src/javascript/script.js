@@ -1,90 +1,69 @@
 const money = document.getElementById("Bill");
-const tip = document.querySelectorAll(".tip-btn");
 const people = document.getElementById("People");
+const tipButtons = document.querySelectorAll(".tip-btn");
 const tipCustom = document.getElementById("Custom");
+
 const tipAmount = document.getElementById("TipAmount");
 const totalAmount = document.getElementById("TotalAmount");
+
 const error = document.querySelector(".error");
 const reset = document.querySelector(".reset-btn");
-
-
 
 money.addEventListener("input", calculate);
 people.addEventListener("input", calculate);
 tipCustom.addEventListener("input", calculate);
 
-function calculate() {
-    const tipValueCustom = tipCustom.value;
-    const peopleValue = people.value;
-    const moneyValue = money.value;
-console.log(tip.values)
-    if (tipValueCustom) {
-        tipAmount.innerHTML = `$${(moneyValue * tipValueCustom / 100 / peopleValue).toFixed(2)}`;
-        totalAmount.innerHTML = `$${(moneyValue * (1 + tipValueCustom / 100) / peopleValue).toFixed(2)}`;
-    } else {
-        tip.forEach((e) => {
-            if(peopleValue == 0){
-                tipAmount.innerHTML = "$0.00";
-                totalAmount.innerHTML = "$0.00";
-                error.style.display = "block";
-                setTimeout(() => {
-                    error.style.display = "none";
-                }, 2000);
-            }
-            if (e.classList.contains("ative")) {
-                tipAmount.innerHTML = `$${(moneyValue * e.value / 100 / peopleValue).toFixed(2)}`;
-                totalAmount.innerHTML = `$${(moneyValue * (1 + e.value / 100) / peopleValue).toFixed(2)}`;
-            }
-        });
-    }
+tipButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    tipButtons.forEach((b) => b.classList.remove("ative"));
 
-  
+    btn.classList.add("ative");
+
+    tipCustom.value = "";
+
+    calculate();
+  });
+});
+
+function calculate() {
+  const bill = Number(money.value);
+  const persons = Number(people.value);
+  const customTip = Number(tipCustom.value);
+
+  if (!persons) {
+    showError();
+    resetValues();
+    return;
+  }
+
+  let tipPercent = customTip;
+
+  if (!tipPercent) {
+    const activeBtn = document.querySelector(".tip-btn.ative");
+    if (activeBtn) tipPercent = Number(activeBtn.value);
+  }
+
+
+  const tipPerPerson = (bill * tipPercent) / 100 / persons;
+  const totalPerPerson = (bill * (1 + tipPercent / 100)) / persons;
+
+  tipAmount.textContent = `${tipPerPerson.toFixed(2)}`;
+  totalAmount.textContent = `${totalPerPerson.toFixed(2)}`;
 }
 
 
+function showError() {
+  error.style.display = "block";
+  setTimeout(() => (error.style.display = "none"), 2000);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-tip.forEach((e) => {
-    e.addEventListener("click", () => {
-      tip.forEach((e) => {
-            e.classList.remove("ative");
-        });
-        e.classList.toggle("ative");
-    });
-});
 
 reset.addEventListener("click", () => {
-    tip.forEach((e) => {
-        e.classList.remove("ative");
-    });
+    tipAmount.textContent = "0.00";
+    totalAmount.textContent = "0.00";
+
     money.value = "";
-    tipCustom.value = "";
     people.value = "";
-    tipAmount.innerHTML = "$0.00";
-    totalAmount.innerHTML = "$0.00";
+    tipCustom.value = "";
+    tipButtons.forEach((b) => b.classList.remove("ative"));
 });
